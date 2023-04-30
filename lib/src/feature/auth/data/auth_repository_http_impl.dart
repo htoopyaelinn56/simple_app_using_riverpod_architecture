@@ -9,12 +9,12 @@ import 'package:http/http.dart' as http;
 
 import '../domain/login_response.dart';
 
-class AuthRepositoryHttpImpl extends AuthRepository {
+class AuthRepositoryHttpImpl implements AuthRepository {
   @override
   Future<LoginResponse> login({required String phone, required String password}) async {
-    final response = await http.get(Uri.parse(kBaseUrl));
-
-    if (response.statusCode == 200) {
+    const statusCode = 200; //api call here
+    await Future.delayed(const Duration(seconds: 2));
+    if (statusCode == 200) {
       return LoginResponse(name: 'name', phone: phone, token: '123');
     }
     throw 'Invalid cridentials';
@@ -22,10 +22,11 @@ class AuthRepositoryHttpImpl extends AuthRepository {
 
   @override
   Future<LoginResponse> register({required String name, required String phone, required String password, required String confirmPassword}) async {
-    final response = await http.get(Uri.parse(kBaseUrl));
-    if (response.statusCode == 200) {
+    const statusCode = 200; //api call here
+    await Future.delayed(const Duration(seconds: 2));
+    if (statusCode == 200) {
       return LoginResponse(name: name, phone: phone, token: '123');
-    } else if (response.statusCode == 500) {
+    } else if (statusCode == 500) {
       throw 'Internal Server Error';
     } else {
       throw 'Something went wrong'; //message from server response
@@ -41,5 +42,11 @@ class AuthRepositoryHttpImpl extends AuthRepository {
       page: const LoginPage(),
       removeBackStack: true,
     );
+  }
+
+  @override
+  Future<String> getProfile() async {
+    await Future.delayed(const Duration(seconds: 2));
+    return 'Mgmg';
   }
 }

@@ -8,7 +8,7 @@ abstract class PostRepository {
 }
 
 final postRepositoryProvider = Provider<PostRepository>((ref) {
-  return PostRepositoryImpl();
+  return PostRepositoryImpl(ref);
 });
 
 final getPostListProvider = FutureProvider<List<PostModel>>((ref) async {

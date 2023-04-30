@@ -18,8 +18,14 @@ abstract class AuthRepository {
   });
 
   Future<void> logout();
+
+  Future<String> getProfile();
 }
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepositoryHttpImpl();
+});
+
+final getProfileProvider = FutureProvider<String>((ref) async {
+  return ref.watch(authRepositoryProvider).getProfile();
 });
