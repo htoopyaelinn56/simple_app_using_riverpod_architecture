@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class PostItemCard extends StatelessWidget {
   const PostItemCard({
     super.key,
     required this.name,
     required this.favourite,
+    this.isFavIcon = true,
     required this.toggleFavourite,
   });
   final String name;
   final bool favourite;
+  final bool isFavIcon;
   final void Function() toggleFavourite;
   @override
   Widget build(BuildContext context) {
@@ -42,10 +42,12 @@ class PostItemCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  InkWell(
-                    onTap: toggleFavourite,
-                    child: Icon(favourite ? Icons.favorite : Icons.favorite_border),
-                  ),
+                  if (isFavIcon)
+                    InkWell(
+                      onTap: toggleFavourite,
+                      child: Icon(
+                          favourite ? Icons.favorite : Icons.favorite_border),
+                    ),
                 ],
               ),
             ],
