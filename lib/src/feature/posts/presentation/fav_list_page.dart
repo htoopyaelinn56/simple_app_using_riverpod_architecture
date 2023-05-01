@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_architecture/src/feature/fav/data/fav_repository.dart';
+import 'package:flutter_app_architecture/src/feature/posts/data/abstract_post_repository.dart';
 import 'package:flutter_app_architecture/src/feature/posts/presentation/post_item_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
