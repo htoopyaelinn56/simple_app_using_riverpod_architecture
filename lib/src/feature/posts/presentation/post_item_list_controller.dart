@@ -11,14 +11,23 @@ class PostItemListController extends AsyncNotifier<List<PostModel>> {
     return ref.read(postServiceProvider).getPosts();
   }
 
+  List<PostModel> favList = [];
+
   void toggleFavourite({required PostModel post}) async {
     await ref.read(postServiceProvider).toggleFavourite(id: post.id);
     final index = state.value!.indexOf(post);
-    state.value![index] = state.value![index].copyWith(favourite: !state.value![index].favourite);
+    state.value![index] =
+        state.value![index].copyWith(favourite: !state.value![index].favourite);
+    if (favList.where((e) => e.id == state.value![index].id).isEmpty) {
+      favList = [...favList, state.value![index]];
+    } else {
+      favList.removeWhere((e) => e.id == state.value![index].id);
+    }
     state = AsyncData(state.value!);
   }
 }
 
-final postItemListControllerProvider = AsyncNotifierProvider<PostItemListController, List<PostModel>>(() {
+final postItemListControllerProvider =
+    AsyncNotifierProvider<PostItemListController, List<PostModel>>(() {
   return PostItemListController();
 });

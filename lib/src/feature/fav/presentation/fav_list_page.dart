@@ -1,33 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_architecture/src/feature/auth/presentation/profile_page.dart';
-import 'package:flutter_app_architecture/src/feature/fav/presentation/fav_list_page.dart';
+import 'package:flutter_app_architecture/src/feature/fav/data/fav_repository.dart';
 import 'package:flutter_app_architecture/src/feature/posts/presentation/post_item_card.dart';
-import 'package:flutter_app_architecture/src/feature/posts/presentation/post_item_list_controller.dart';
-import 'package:flutter_app_architecture/src/util/page_pusher.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PostListPage extends StatelessWidget {
-  const PostListPage({super.key});
+class FavListPage extends StatelessWidget {
+  const FavListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Feed'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              pagePush(context: context, page: const FavListPage());
-            },
-            icon: const Icon(Icons.favorite),
-          ),
-          IconButton(
-            onPressed: () {
-              pagePush(context: context, page: const ProfilePage());
-            },
-            icon: const Icon(Icons.person),
-          ),
-        ],
+        title: const Text('Favourite'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -35,7 +18,7 @@ class PostListPage extends StatelessWidget {
           children: [
             Expanded(
               child: Consumer(builder: (context, ref, _) {
-                return ref.watch(postItemListControllerProvider).when(
+                return ref.watch(favListProvider).when(
                       data: (data) {
                         return ListView.separated(
                           separatorBuilder: (_, __) => const SizedBox(
@@ -44,17 +27,13 @@ class PostListPage extends StatelessWidget {
                           itemBuilder: (_, index) {
                             final item = data[index];
                             return PostItemCard(
+                              isFavIcon: false,
                               name: item.name,
                               favourite: item.favourite,
-                              toggleFavourite: () {
-                                ref
-                                    .read(
-                                        postItemListControllerProvider.notifier)
-                                    .toggleFavourite(post: item);
-                              },
+                              toggleFavourite: () {},
                             );
                           },
-                          itemCount: 20,
+                          itemCount: data.length,
                         );
                       },
                       error: (e, st) => Center(
