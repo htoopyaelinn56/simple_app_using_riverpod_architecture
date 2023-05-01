@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_architecture/src/feature/auth/presentation/profile_page.dart';
+import 'package:flutter_app_architecture/src/feature/friends/presentation/friends_list_page.dart';
 import 'package:flutter_app_architecture/src/feature/posts/presentation/fav_list_page.dart';
 import 'package:flutter_app_architecture/src/feature/posts/presentation/post_item_card.dart';
 import 'package:flutter_app_architecture/src/feature/posts/presentation/post_item_list_controller.dart';
@@ -20,6 +21,12 @@ class PostListPage extends StatelessWidget {
               pagePush(context: context, page: const FavListPage());
             },
             icon: const Icon(Icons.favorite),
+          ),
+          IconButton(
+            onPressed: () {
+              pagePush(context: context, page: const FriendsListPage());
+            },
+            icon: const Icon(Icons.group_add),
           ),
           IconButton(
             onPressed: () {
