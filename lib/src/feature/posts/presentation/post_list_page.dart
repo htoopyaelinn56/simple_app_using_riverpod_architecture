@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_architecture/src/feature/auth/presentation/profile_page.dart';
-import 'package:flutter_app_architecture/src/feature/fav/presentation/fav_list_page.dart';
+import 'package:flutter_app_architecture/src/feature/posts/presentation/fav_list_page.dart';
 import 'package:flutter_app_architecture/src/feature/posts/presentation/post_item_card.dart';
 import 'package:flutter_app_architecture/src/feature/posts/presentation/post_item_list_controller.dart';
 import 'package:flutter_app_architecture/src/util/page_pusher.dart';

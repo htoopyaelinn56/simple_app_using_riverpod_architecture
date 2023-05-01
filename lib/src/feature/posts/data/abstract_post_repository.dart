@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 abstract class PostRepository {
   Future<List<PostModel>> getPosts();
   Future<void> toggleFavourite({required int id});
+  Future<List<PostModel>> getFavList();
 }
 
 final postRepositoryProvider = Provider<PostRepository>((ref) {
@@ -13,4 +14,9 @@ final postRepositoryProvider = Provider<PostRepository>((ref) {
 
 final getPostListProvider = FutureProvider<List<PostModel>>((ref) async {
   return ref.watch(postRepositoryProvider).getPosts();
+});
+
+final favListProvider =
+    FutureProvider.autoDispose<List<PostModel>>((ref) async {
+  return ref.watch(postRepositoryProvider).getFavList();
 });
