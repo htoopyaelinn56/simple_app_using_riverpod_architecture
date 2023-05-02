@@ -7,7 +7,15 @@ class FriendsService {
   FriendsService({required this.ref});
 
   Future<List<FriendsModel>> getFriends() async {
-    return await ref.watch(friendsListProvider.future);
+    return await ref.read(friendsListProvider.future);
+  }
+
+  Future<void> addFriend(String id) async {
+    await ref.read(friendsRepositoryProvider).addFriend(id);
+  }
+
+  Future<void> removeFriend(String id) async {
+    await ref.read(friendsRepositoryProvider).removeFriend(id);
   }
 }
 

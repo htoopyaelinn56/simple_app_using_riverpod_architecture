@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class FriendsRepository {
   Future<List<FriendsModel>> getFriendsList();
+  Future<void> addFriend(String id);
+  Future<void> removeFriend(String id);
 }
 
 final friendsRepositoryProvider = Provider<FriendsRepository>((ref) {

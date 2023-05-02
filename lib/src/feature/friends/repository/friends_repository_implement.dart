@@ -15,4 +15,24 @@ class FriendsRepositoryImplement implements FriendsRepository {
         ),
     ];
   }
+
+  @override
+  Future<void> addFriend(String id) async {
+    const status = 200;
+    if (status == 200) {
+      await Future.delayed(const Duration(seconds: 1));
+    } else {
+      throw 'Internal Server Error';
+    }
+  }
+
+  @override
+  Future<void> removeFriend(String id) async {
+    const status = 200;
+    if (status == 200) {
+      await Future.delayed(const Duration(seconds: 1));
+    } else {
+      throw 'Internal Server Error';
+    }
+  }
 }
