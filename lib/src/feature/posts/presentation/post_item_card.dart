@@ -5,12 +5,12 @@ class PostItemCard extends StatelessWidget {
     super.key,
     required this.name,
     required this.favourite,
-    this.isFavIcon = true,
+    this.hasFavIcon = true,
     required this.toggleFavourite,
   });
   final String name;
   final bool favourite;
-  final bool isFavIcon;
+  final bool hasFavIcon;
   final void Function() toggleFavourite;
   @override
   Widget build(BuildContext context) {
@@ -42,11 +42,10 @@ class PostItemCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  if (isFavIcon)
+                  if (hasFavIcon)
                     InkWell(
                       onTap: toggleFavourite,
-                      child: Icon(
-                          favourite ? Icons.favorite : Icons.favorite_border),
+                      child: Icon(favourite ? Icons.favorite : Icons.favorite_border),
                     ),
                 ],
               ),

@@ -1,7 +1,7 @@
 import 'package:flutter_app_architecture/src/feature/friends/domain/friends_model.dart';
 import 'package:flutter_app_architecture/src/feature/friends/repository/abstract_friends_repository.dart';
 
-class FriendsRepositoryImplement extends FriendsRepository {
+class FriendsRepositoryImplement implements FriendsRepository {
   @override
   Future<List<FriendsModel>> getFriendsList() async {
     await Future.delayed(const Duration(seconds: 1));

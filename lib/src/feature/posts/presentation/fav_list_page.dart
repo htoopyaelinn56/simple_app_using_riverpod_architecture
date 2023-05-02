@@ -18,22 +18,29 @@ class FavListPage extends StatelessWidget {
           children: [
             Expanded(
               child: Consumer(builder: (context, ref, _) {
-                final favList =
-                    ref.watch(postItemListControllerProvider.notifier).favList;
-                return ListView.separated(
-                  separatorBuilder: (_, __) => const SizedBox(
-                    height: 10,
-                  ),
-                  itemBuilder: (_, index) {
-                    final item = favList[index];
-                    return PostItemCard(
-                      isFavIcon: false,
-                      name: item.name,
-                      favourite: item.favourite,
-                      toggleFavourite: () {},
+                final favList = ref.watch(getFavPostListProvider);
+                return favList.when(
+                  data: (data) {
+                    return ListView.separated(
+                      separatorBuilder: (_, __) => const SizedBox(
+                        height: 10,
+                      ),
+                      itemBuilder: (_, index) {
+                        final item = data[index];
+                        return PostItemCard(
+                          hasFavIcon: false,
+                          name: item.name,
+                          favourite: item.favourite,
+                          toggleFavourite: () {},
+                        );
+                      },
+                      itemCount: data.length,
                     );
                   },
-                  itemCount: favList.length,
+                  error: (e, st) => Center(
+                    child: Text('$e'),
+                  ),
+                  loading: () => const CircularProgressIndicator(),
                 );
               }),
             ),

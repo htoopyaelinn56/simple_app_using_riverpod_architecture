@@ -7,7 +7,7 @@ class FriendsService {
   FriendsService({required this.ref});
 
   Future<List<FriendsModel>> getFriends() async {
-    return await ref.watch(friendsListProvider.future)!;
+    return await ref.watch(friendsListProvider.future);
   }
 }
 
